@@ -4,10 +4,6 @@ pipeline{
 
     agent any
     //agent { label 'Demo' }
-    tools {
-        // Use Maven installation from Homebrew
-        maven 'Maven3'
-    }
 
     parameters{
 
@@ -28,20 +24,12 @@ pipeline{
             )
             }
         }
-        stage('Update Maven Repositories') {
-            steps {
-                script {
-                    sh 'mvn clean install -U'
-                }
-            }
-        }
          stage('Unit Test maven'){
          
          when { expression {  params.action == 'create' } }
 
             steps{
                script{
-                   sh '/opt/homebrew/Cellar/maven/3.9.6/libexec/bin/mvn test'
                    mvnTest()
                }
             }
