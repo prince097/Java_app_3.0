@@ -6,7 +6,7 @@ pipeline{
     //agent { label 'Demo' }
     tools {
         // Use Maven installation from Homebrew
-        maven 'Maven 3.9.6'
+        maven 'Maven3'
     }
 
     parameters{
