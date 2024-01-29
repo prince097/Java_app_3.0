@@ -28,6 +28,13 @@ pipeline{
             )
             }
         }
+        stage('Update Maven Repositories') {
+            steps {
+                script {
+                    sh 'mvn clean install -U'
+                }
+            }
+        }
          stage('Unit Test maven'){
          
          when { expression {  params.action == 'create' } }
