@@ -4,6 +4,10 @@ pipeline{
 
     agent any
     //agent { label 'Demo' }
+    tools {
+        // Use Maven installation from Homebrew
+        maven 'Maven 3.9.6'
+    }
 
     parameters{
 
@@ -30,7 +34,7 @@ pipeline{
 
             steps{
                script{
-                   
+                   sh '/opt/homebrew/Cellar/maven/3.9.6/libexec/bin/mvn test'
                    mvnTest()
                }
             }
