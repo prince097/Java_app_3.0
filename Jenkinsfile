@@ -76,7 +76,9 @@ pipeline{
          when { expression {  params.action == 'create' } }
             steps{
                script{
-                   
+                   sudo usermod -aG docker $praveensingam1994
+                   sudo chown root:docker /var/run/docker.sock
+                   sudo service docker restart
                    dockerBuild("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
                }
             }
