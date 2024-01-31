@@ -77,8 +77,8 @@ pipeline{
             steps{
                script{
                    // sh "sudo usermod -aG docker $praveensingam1994"
-                   sh "sudo chown root:docker /var/run/docker.sock"
-                   sh "sudo service docker restart"
+                   sh "setfacl -m user:root:rw /var/run/docker.sock"
+                   sh "systemctl restart docker"
                    dockerBuild("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
                }
             }
