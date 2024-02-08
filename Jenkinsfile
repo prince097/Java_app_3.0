@@ -79,8 +79,10 @@ stage('Jfrog') {
             withCredentials([usernamePassword(credentialsId: 'jfrog', passwordVariable: 'ARTIFACTORY_PASSWORD', usernameVariable: 'ARTIFACTORY_USERNAME')]) {
                  sh '''
                         mvn clean install -DskipTests
-                        curl -X PUT -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD -T kubernetes-configmap-reload-0.0.1-SNAPSHOT.jar http://65.2.11.4:8082/artifactory/
-                    '''
+                        for jarFile in target/*.jar; do
+                            curl -X PUT -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD -T $jarFile http://65.2.11.4:8082/artifactory/
+                        done
+                '''
             }
         }
     }
