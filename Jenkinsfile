@@ -80,7 +80,7 @@ stage('Jfrog') {
                  sh '''
                         mvn clean install -DskipTests
                         for jarFile in target/*.jar; do
-                            curl -X PUT -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD -T $jarFile http://35.154.184.146:8082/artifactory/prince-java-app/
+                            curl -X PUT -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD -T $jarFile http://35.154.184.146:8082/artifactory/princy-java-pipeline/
                         done
                 '''
             }
