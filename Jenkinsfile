@@ -78,8 +78,7 @@ stage('Jfrog') {
         script {
             withCredentials([usernamePassword(credentialsId: 'jfrog', passwordVariable: 'ARTIFACTORY_PASSWORD', usernameVariable: 'ARTIFACTORY_USERNAME')]) {
                 sh '''
-                    jfrog rt u kubernetes-configmap-reload-0.0.1-SNAPSHOT.jar prince-java-app --url http://65.2.11.4:8082/artifactory/ --user $ARTIFACTORY_USERNAME --password $ARTIFACTORY_PASSWORD
-                '''
+                    curl -X PUT -u $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD -T kubernetes-configmap-reload-0.0.1-SNAPSHOT.jar http://65.2.11.4:8082/artifactory/  '''
             }
         }
     }
